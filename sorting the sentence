@@ -1,0 +1,22 @@
+class Solution(object):
+    def sortSentence(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        lst=s.split(" ")
+        for i in range(len(lst)):
+            minimum=i
+            for j in range(i+1,len(lst)):
+                if int(lst[j][-1])<int(lst[minimum][-1]):
+                    minimum=j
+            lst[i],lst[minimum]=lst[minimum],lst[i]
+        returnstr=""
+        for i in lst:
+            returnstr+=i[:-1]+" "
+            
+        returnstr=returnstr.strip()
+        
+        return returnstr
+        
+        
