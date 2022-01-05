@@ -1,0 +1,13 @@
+class Solution(object):
+    def kthLargestNumber(self, nums, k):
+        """
+        :type nums: List[str]
+        :type k: int
+        :rtype: str
+        """
+        lst=[]
+        for i in nums:
+            lst.append(int(i))
+        lst.sort()
+        lst.reverse()
+        return str(lst[k-1])            
