@@ -1,0 +1,20 @@
+import heapq
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        dictt={}
+        freqarr=[]
+        toreturn=[]
+        for i in nums:
+            dictt[i]=0
+        for i in nums:
+            dictt[i]+=1
+        for i in dictt:
+            freqarr.append([-1*dictt[i],i])
+        heapq.heapify(freqarr)
+        for i in range(k):
+            toreturn.append(heapq.heappop(freqarr)[1])
+        return toreturn
+            
+        
+        
+        
