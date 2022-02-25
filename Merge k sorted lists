@@ -1,0 +1,23 @@
+import heapq as h
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        heap=[]
+        toreturn=[]
+        
+        for i in lists:
+            while(i!=None):
+                h.heappush(heap,i.val)
+                i=i.next
+        while(len(heap)!=0):
+            toreturn.append(ListNode(h.heappop(heap)))
+        for i in range(len(toreturn)-1):
+            toreturn[i].next=toreturn[i+1]
+        if len(toreturn)==0:
+            return None
+        
+        return toreturn[0]
