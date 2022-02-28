@@ -1,0 +1,24 @@
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        checkleft=1
+        checkright=n
+        bad=0
+        
+        while (checkleft<=checkright):
+            
+            mid=checkleft+((checkright-checkleft)//2)
+            
+            if(isBadVersion(mid)):
+                checkright=mid-1
+                bad=mid
+              
+            else:
+                checkleft=mid+1
+        return bad
+                
+                
+                
+        
