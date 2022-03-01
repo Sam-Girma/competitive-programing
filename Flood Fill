@@ -1,0 +1,19 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        def dfs(row,col):
+            image[row][col]=newColor
+            for i in dirrection:
+                newRow, newCol = row+i[0], col+i[1]
+                if not inBound(newRow,newCol) or image[newRow][newCol]!=startColor:
+                    continue
+                dfs(newRow,newCol)
+            
+        startColor=image[sr][sc]
+        dirrection=[[0,-1],[0,1],[1,0],[-1,0]]
+        inBound= lambda row,col: 0<=row<len(image) and 0<=col<len(image[0])
+        
+        if newColor==startColor:
+            return image    
+        dfs(sr,sc)
+        return image
+        
