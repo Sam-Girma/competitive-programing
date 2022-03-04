@@ -1,0 +1,22 @@
+import collections
+class Solution:
+    def canReach(self, arr: List[int], start: int) -> bool:
+        if arr[start]==0:
+            return True
+        self.visited=[False]*len(arr)
+        queue=collections.deque([])
+        def bfs(start):
+            if start+arr[start]<len(arr) and self.visited[start+arr[start]]!=True:
+                queue.append(start+arr[start])
+                self.visited[start+arr[start]]=True
+            if start-arr[start]>-1 and self.visited[start-arr[start]]!=True:
+                queue.append(start-arr[start])
+                self.visited[start-arr[start]]=True
+        bfs(start)
+        while(queue):
+            if arr[queue[0]]==0:
+                return True
+            else:
+                bfs(queue[0])
+                queue.popleft()
+        return False
