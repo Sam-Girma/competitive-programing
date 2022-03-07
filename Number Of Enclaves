@@ -7,15 +7,13 @@ class Solution:
         inbound= lambda a,b: 0<=a<len(grid) and 0<=b<len(grid[0])
         def dfs(i,j):
             for k in direction:
-                if not inbound(i+k[0],j+k[1]):
-                    self.boundStatus=False
+                    if not inbound(i+k[0],j+k[1]):
+                        self.boundStatus=False
             for k in direction:
                         if inbound(i+k[0],j+k[1]) and grid[i+k[0]][j+k[1]]==1:
                             grid[i+k[0]][j+k[1]]=0
                             self.count+=1
                             dfs(i+k[0],j+k[1])
-                
-                    
             
         for i in range(len(grid)):
             for j in range(len(grid[0])):
@@ -23,14 +21,7 @@ class Solution:
                 if grid[i][j]==1:
                     grid[i][j]=0
                     self.count+=1
-                    for k in direction:
-                        if not inbound(i+k[0],j+k[1]):
-                            self.boundStatus=False
-                    for k in direction:
-                        if inbound(i+k[0],j+k[1]) and grid[i+k[0]][j+k[1]]==1:
-                            grid[i+k[0]][j+k[1]]=0
-                            self.count+=1
-                            dfs(i+k[0],j+k[1])
+                    dfs(i,j)
                     if self.boundStatus:
                         mycountarr.append(self.count)
                     self.count=0
@@ -38,5 +29,5 @@ class Solution:
         if len(mycountarr)==0:
             return 0
         else:
-            return sum(mycountarr)        
- 
+            return sum(mycountarr)
+        
