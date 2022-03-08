@@ -1,0 +1,18 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        people=deque(people)
+        
+        count=0
+        while people:
+            a=people[0]
+            b=people[-1]
+            if len(people)>1 and (b+a)<=limit:
+                people.popleft()
+                people.pop()
+                count+=1
+            else:
+                people.pop()
+                count+=1
+        return count
+       
