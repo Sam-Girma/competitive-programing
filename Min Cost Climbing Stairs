@@ -1,14 +1,14 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        leng=len(cost)
-        dictt={}
-        def find(i,dictt):
-            if i in dictt:
-                return dictt[i]
-            if i==t-1:
-                return cost[i]
-            if i==t-2:
-                return cost[i]
-            dictt[i]=cost[i] +min(find(i+1,dictt) if i<leng-1 else 0,find(i+2,dictt) if i<leng-2 else 0)
-            return dictt[i]
-        return min(find(0,dictt),find(1,dictt)) 
+        memo={}
+        def calculate(n,memo):
+            if n in memo:
+                return memo[n]
+            if n==len(cost)-1:
+                return cost[-1]
+            if n==len(cost)-2:
+                return cost[-2]
+            memo[n]=cost[n]+min(calculate(n+1,memo),calculate(n+2,memo))
+            return memo[n]
+        return min(calculate(0,memo),calculate(1,memo))
+            
