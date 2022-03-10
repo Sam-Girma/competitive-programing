@@ -1,0 +1,39 @@
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+        senators={'R':[],'D':[]}
+        for i in range(len(senate)):
+            senators[senate[i]].append(i)
+        ban=[False]*len(senate)
+        print(senators)
+        
+        while(len(senators['R'])!=0 or len(senators['D'])!=0):
+            for i in range(len(senate)):                
+                if ban[i]==True:
+                    continue
+                if senate[i]=='R':
+                    if len(senators['D'])==0:
+                        return "Radiant"
+                    check=False
+                    for k in senators['D']:
+                        if i<k:
+                            ban[k]=True
+                            senators['D'].remove(k)
+                            check=True
+                            break
+                    if check==False:
+                        ban[senators['D'][0]]=True
+                        senators['D'].pop(0)
+                            
+                else:
+                    if len(senators['R'])==0:
+                        return "Dire"
+                    check=False
+                    for k in senators['R']:
+                        if i<k:
+                            ban[k]=True
+                            senators['R'].remove(k)
+                            check=True
+                            break
+                    if check==False:
+                        ban[senators['R'][0]]=True
+                        senators['R'].pop(0)
