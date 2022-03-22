@@ -1,0 +1,17 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        maxindex={s[i] : i for i in range(len(s))}
+        pointer=0
+        count=0
+        returnarr=[]
+        while(pointer<len(s)):
+            lastapp=maxindex[s[pointer]]
+            while(pointer<lastapp):
+                pointer+=1
+                if maxindex[s[pointer]]>lastapp:
+                    lastapp=maxindex[s[pointer]]
+                count+=1
+            returnarr.append(count+1)
+            count=0
+            pointer+=1
+        return returnarr
