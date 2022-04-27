@@ -1,0 +1,14 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        minpointer=0
+        maxpointer=len(people)-1
+        count=0
+        while(maxpointer>=minpointer):
+            if (people[maxpointer]+people[minpointer])<=limit:
+                minpointer+=1
+                
+            count+=1
+            maxpointer-=1
+            
+        return count
