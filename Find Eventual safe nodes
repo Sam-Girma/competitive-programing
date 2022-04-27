@@ -1,0 +1,42 @@
+class Solution:
+    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
+        
+        connection = {}
+        cycle = ['']*len(graph)
+        safeNodes=[]
+        visited = set()
+        
+        for nodes,edges in enumerate(graph):
+            connection[nodes]=edges
+        
+        
+        def dfs(node):
+            if (node in visited) and (cycle[node]==''):
+                cycle[node]=True
+                return False
+            visited.add(node)
+            
+            if cycle[node]==True:
+                return False
+            elif cycle[node]==False:
+                return True
+            toreturn = True
+            for ele in connection[node]:
+                if dfs(ele) == False:
+                    toreturn = False
+                    cycle[node]=True
+                    cycle[ele]= True
+                    break
+            if toreturn:
+                cycle[node]=False
+                return True
+            return False
+                
+        
+        for node in range(len(graph)):
+            if dfs(node):
+                safeNodes.append(node)
+            else:
+                cycle[node]=True
+        
+        return safeNodes         
