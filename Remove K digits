@@ -1,0 +1,23 @@
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        
+        retlist = []
+        for i in num:
+            while( retlist and k and retlist[-1] > i):
+                retlist.pop()
+                k -=1
+            
+            if (len(retlist)==0 and i=="0"):
+                continue
+            retlist.append(i)
+         
+        if k:
+            retlist = retlist[:-k]
+            
+        return "".join(retlist) or "0"
+            
+        
+            
+            
+        
+        
