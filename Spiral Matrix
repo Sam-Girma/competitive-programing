@@ -1,0 +1,24 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        retarray = []
+        
+        while(matrix):
+            for i in (matrix[0]):
+                retarray.append(i)
+            matrix.pop(0)
+            
+            for i in range(len(matrix)):
+                if matrix[i]:
+                    retarray.append(matrix[i][-1])
+                    matrix[i].pop()
+            if matrix:
+                for i in range(len(matrix[-1])-1,-1,-1):
+                    retarray.append(matrix[-1][i])
+                matrix.pop()
+            for i in range(len(matrix)):
+                if matrix[-i-1]:
+                    retarray.append(matrix[-i-1][0])
+                    matrix[-i-1].pop(0)
+        
+        return retarray
+            
