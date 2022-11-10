@@ -1,4 +1,4 @@
-https://github.com/Sam-Girma/competitive-programing/blob/main/divide_two_integers.py
+
 class Solution:
     def maxPoints(self, points: List[List[int]]) -> int:
         if len(points)==1:
